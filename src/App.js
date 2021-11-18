@@ -3,6 +3,7 @@ import React from "react";
 import DateRangeInput from "./DateRangeInput";
 import BearishTrend from "./BearishTrend";
 import MaxTradingVolume from "./MaxTradingVolume";
+import MaximizingProfit from "./MaximizingProfit";
 
 class App extends React.Component {
   setDateRange(fromDate, toDate) {
@@ -35,6 +36,7 @@ class App extends React.Component {
         <div>
           <BearishTrend data={this.state.bitcoinData} />
           <MaxTradingVolume data={this.state.bitcoinData} />
+          <MaximizingProfit data={this.state.bitcoinData} />
         </div>
       </div>
     );

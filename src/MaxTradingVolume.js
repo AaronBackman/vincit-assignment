@@ -38,7 +38,7 @@ class MaxTradingVolume extends React.Component {
     return (
       <div>
         <div>{maxVolumeDateStr}</div>
-        <div>Volume: {maxVolume.toLocaleString()}€</div>
+        <div>Maximum Volume: {maxVolume.toLocaleString()}€</div>
       </div>
     );
   }

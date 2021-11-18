@@ -1,5 +1,8 @@
 import React from "react";
 
+const volumeIndex = 1;
+const dateIndex = 0;
+
 class DateRangeInput extends React.Component {
   // gets market data for bitcoin from coingecko, returns a promise object from the fetch request
   fetchBitcoinData(fromDate, toDate) {
@@ -23,8 +26,8 @@ class DateRangeInput extends React.Component {
     // priceData is an array of timestamp (milliseconds), price
     // take first price from each day
     for (const priceData of data.prices) {
-      const timestamp = priceData[0];
-      const price = priceData[1];
+      const timestamp = priceData[dateIndex];
+      const price = priceData[volumeIndex];
 
       currentDate = new Date(timestamp);
 
@@ -53,8 +56,8 @@ class DateRangeInput extends React.Component {
     // volumeData is an array of timestamp (milliseconds), volume
     // take first volume from each day
     for (const volumeData of data.total_volumes) {
-      const timestamp = volumeData[0];
-      const volume = volumeData[1];
+      const timestamp = volumeData[dateIndex];
+      const volume = volumeData[volumeIndex];
 
       currentDate = new Date(timestamp);
 

@@ -1,5 +1,8 @@
 import React from "react";
 
+const priceIndex = 1;
+const dateIndex = 0;
+
 // implements the assignment A
 class BearishTrend extends React.Component {
   // data is assumed to be ordered
@@ -12,8 +15,8 @@ class BearishTrend extends React.Component {
 
     for (let i = 0; i < data.prices.length - 1; i++) {
       // data.prices contains date, price arrays
-      const todayPrice = data.prices[i][1];
-      const tomorrowPrice = data.prices[i + 1][1];
+      const todayPrice = data.prices[i][priceIndex];
+      const tomorrowPrice = data.prices[i + 1][priceIndex];
 
       // check if bearish day
       if (tomorrowPrice < todayPrice) {
@@ -42,7 +45,9 @@ class BearishTrend extends React.Component {
   render() {
     const { data } = this.props;
     console.log(data);
-    return <div>{this.calculateBearishLength(data)}</div>;
+    return (
+      <div>Longest bearish trend: {this.calculateBearishLength(data)} days</div>
+    );
   }
 }
 
