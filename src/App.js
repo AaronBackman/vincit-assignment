@@ -1,6 +1,7 @@
 import "./App.css";
 import React from "react";
 import DateRangeInput from "./DateRangeInput";
+import BearishTrend from "./BearishTrend";
 
 class App extends React.Component {
   setDateRange(fromDate, toDate) {
@@ -24,10 +25,15 @@ class App extends React.Component {
 
     return (
       <div className="App">
-        <DateRangeInput
-          setDateRange={this.setDateRange}
-          setBitcoinData={this.setBitcoinData}
-        />
+        <div>
+          <DateRangeInput
+            setDateRange={this.setDateRange}
+            setBitcoinData={this.setBitcoinData}
+          />
+        </div>
+        <div>
+          <BearishTrend data={this.state.bitcoinData} />
+        </div>
       </div>
     );
   }

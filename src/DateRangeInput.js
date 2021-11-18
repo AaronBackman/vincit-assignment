@@ -106,9 +106,7 @@ class DateRangeInput extends React.Component {
     this.fetchBitcoinData(fromDate, toDate)
       .then((response) => response.json())
       .then((data) => {
-        this.props.setBitcoinData({
-          bitcoinData: this.truncateDataArrayToDaily(data),
-        });
+        this.props.setBitcoinData(this.truncateDataArrayToDaily(data));
       });
 
     this.props.setDateRange(
