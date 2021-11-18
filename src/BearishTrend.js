@@ -11,7 +11,7 @@ class BearishTrend extends React.Component {
     let maxBearishCount = 0;
 
     for (let i = 0; i < data.prices.length - 1; i++) {
-      // data.prices contains timestamp, price arrays
+      // data.prices contains date, price arrays
       const todayPrice = data.prices[i][1];
       const tomorrowPrice = data.prices[i + 1][1];
 
