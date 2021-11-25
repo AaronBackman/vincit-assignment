@@ -24,7 +24,14 @@ class MaxTradingVolume extends React.Component {
     const { data } = this.props;
 
     const maxVolumeData = this.calcHighestVolume(data);
-    if (!maxVolumeData) return <div></div>;
+    if (!maxVolumeData) {
+      return (
+        <div>
+          <div>Maximum Volume: - €</div>
+          <div>On date: -</div>
+        </div>
+      );
+    }
 
     const maxVolumeDate = maxVolumeData[0];
     // volume in euros
@@ -37,8 +44,8 @@ class MaxTradingVolume extends React.Component {
 
     return (
       <div>
-        <div>{maxVolumeDateStr}</div>
         <div>Maximum Volume: {maxVolume.toLocaleString()}€</div>
+        <div>On date: {maxVolumeDateStr}</div>
       </div>
     );
   }

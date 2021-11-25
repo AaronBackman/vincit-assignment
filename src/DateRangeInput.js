@@ -1,4 +1,5 @@
 import React from "react";
+import "./DataRangeInput.css";
 
 const volumeIndex = 1;
 const dateIndex = 0;
@@ -16,7 +17,7 @@ class DateRangeInput extends React.Component {
   }
 
   // array of bitcoin data is truncated so that only first datapoint
-  // is taken from each day
+  // is taken from each day if there are multiple on the same day
   // market cap info is not needed and is ignored
   truncateDataArrayToDaily(data) {
     const truncated = { prices: [], totalVolumes: [] };
@@ -106,6 +107,11 @@ class DateRangeInput extends React.Component {
     const fromDate = new Date(this.state.dateFromStr);
     const toDate = new Date(this.state.dateToStr);
 
+    if (fromDate > toDate) {
+      console.error("start date must be before end date");
+      return;
+    }
+
     this.fetchBitcoinData(fromDate, toDate)
       .then((response) => response.json())
       .then((data) => {
@@ -120,20 +126,29 @@ class DateRangeInput extends React.Component {
 
   render() {
     return (
-      <div>
-        <form onSubmit={this.handleSubmit}>
-          <input
-            type="text"
-            value={this.state.dateFromStr}
-            onChange={this.handleChangeDateFrom}
-          />
-          <input
-            type="text"
-            value={this.state.dateToStr}
-            onChange={this.handleChangeDateTo}
-          />
-          <input type="submit" value="Ok" />
-        </form>
+      <div className="input-container">
+        <div className="input-form-container">
+          <div className="input-info">
+            <div>Please enter dates</div>
+            <div>yyyy-mm-dd format is used</div>
+            <div>Example: 2019-05-12</div>
+          </div>
+          <form className="input-form" onSubmit={this.handleSubmit}>
+            <div>from</div>
+            <input
+              type="text"
+              value={this.state.dateFromStr}
+              onChange={this.handleChangeDateFrom}
+            />
+            <div>to</div>
+            <input
+              type="text"
+              value={this.state.dateToStr}
+              onChange={this.handleChangeDateTo}
+            />
+            <input type="submit" value="Ok" />
+          </form>
+        </div>
       </div>
     );
   }

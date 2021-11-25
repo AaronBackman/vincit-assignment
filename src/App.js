@@ -33,7 +33,7 @@ class App extends React.Component {
             setBitcoinData={this.setBitcoinData}
           />
         </div>
-        <div>
+        <div className="results">
           <BearishTrend data={this.state.bitcoinData} />
           <MaxTradingVolume data={this.state.bitcoinData} />
           <MaximizingProfit data={this.state.bitcoinData} />

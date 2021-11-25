@@ -5,8 +5,8 @@ const dateIndex = 0;
 
 // implements the assignment C
 class MaximizingProfit extends React.Component {
-  // profit is maximized by buying at the start of a bullish (increasing) trend
-  // and sold at the end (same or another rising trend)
+  // profit is maximized by buying at the start of some bullish (increasing) trend
+  // and sold later at the end of (same or another rising trend)
   // if price only decreases, making profit is impossible
   maximizeProfit(data) {
     if (!data || !data.prices) return undefined;
@@ -33,14 +33,14 @@ class MaximizingProfit extends React.Component {
       // date, price
       const tomorrowPrice = prices[i + 1];
 
-      // beginning of a rising trend (possibly the best buying date)
+      // beginning of a rising trend (possible best buying date)
       if (
         yesterdayPrice[priceIndex] > todayPrice[priceIndex] &&
         tomorrowPrice[priceIndex] > todayPrice[priceIndex]
       ) {
         buyPriceArr.push(todayPrice);
       }
-      // end of a rising trend (possibly the best selling date)
+      // end of a rising trend (possible best selling date)
       else if (
         yesterdayPrice[priceIndex] < todayPrice[priceIndex] &&
         tomorrowPrice[priceIndex] < todayPrice[priceIndex]
@@ -50,8 +50,6 @@ class MaximizingProfit extends React.Component {
     }
 
     // traditionally, selling must happen after buying
-    // (assignment says nothing about selling short, which makes selling before buying possible)
-    // so here we assume that the buy date is before the sell date
 
     let bestBuyPrice = buyPriceArr[0];
     let bestSellPrice = sellPriceArr[0];
@@ -103,7 +101,15 @@ class MaximizingProfit extends React.Component {
     const { data } = this.props;
 
     const profitData = this.maximizeProfit(data);
-    if (!profitData) return <div></div>;
+    if (!profitData) {
+      return (
+        <div>
+          <div>Buy date: -</div>
+          <div>Sell date: -</div>
+          <div>Profit: -</div>
+        </div>
+      );
+    }
 
     // price doesn't increase in any period within the range
     // don't buy
@@ -115,7 +121,10 @@ class MaximizingProfit extends React.Component {
       <div>
         <div>Buy date: {this.formatDate(profitData.buyDate)}</div>
         <div>Sell date: {this.formatDate(profitData.sellDate)}</div>
-        <div>Profit: {Number((profitData.profit * 100).toPrecision(3))}%</div>
+        <div>
+          Profit:{" "}
+          {Number((profitData.profit * 100).toPrecision(3)).toLocaleString()}%
+        </div>
       </div>
     );
   }
