@@ -1,9 +1,9 @@
 # Vincit Assignment web version
 
 ## Running:
-use either command:
+yarn can be used instead of npm  
+npm install
 npm start
-or yarn start
 
 open http://localhost:3000/  on your browser (firefox and chrome are supported and tested).
 
