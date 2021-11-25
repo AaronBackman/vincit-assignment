@@ -2,8 +2,8 @@
 
 ## Running:
 yarn can be used instead of npm  
-npm install
-npm start
+npm install  
+npm start  
 
 open http://localhost:3000/  on your browser (firefox and chrome are supported and tested).
 
